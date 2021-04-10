@@ -2,10 +2,9 @@ package com.br.financialapi.service.impl
 
 import com.br.financialapi.domain.orm.User
 import com.br.financialapi.domain.repository.UserRepository
-import com.br.financialapi.exceptions.AlreadyExistsException
+import com.br.financialapi.exceptions.BusinessRoleException
 import com.br.financialapi.exceptions.AuthenticationException
 import com.br.financialapi.service.UserService
-import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -24,7 +23,7 @@ class UserServiceImpl implements UserService {
     User authenticate(String email, String password) {
         User user = userRepository.findByEmailAndPassword(email, password)
         if(!user) {
-            throw new AuthenticationException("Email ou senha invalido")
+            throw new AuthenticationException("Email ou senha inválidos")
         }
 
         user
@@ -39,7 +38,7 @@ class UserServiceImpl implements UserService {
     @Override
     void validateEmail(String email) {
         if(userRepository.existsByEmail(email)) {
-            throw new AlreadyExistsException("Email já existe")
+            throw new BusinessRoleException("Email já existe")
         }
     }
 }

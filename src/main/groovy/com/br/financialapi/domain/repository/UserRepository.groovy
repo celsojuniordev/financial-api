@@ -1,9 +1,9 @@
 package com.br.financialapi.domain.repository
 
 import com.br.financialapi.domain.orm.User
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.jpa.repository.JpaRepository
 
-interface UserRepository extends CrudRepository<User, Long> {
+interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByEmail(String email)
 

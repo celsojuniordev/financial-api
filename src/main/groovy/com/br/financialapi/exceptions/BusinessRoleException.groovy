@@ -4,9 +4,9 @@ package com.br.financialapi.exceptions
  * @project financial-api
  * @author Celso Junior on 31/03/2021
  */
-class AlreadyExistsException extends RuntimeException {
+class BusinessRoleException extends RuntimeException {
 
-    AlreadyExistsException(String message) {
+    BusinessRoleException(String message) {
         super(message)
     }
 }

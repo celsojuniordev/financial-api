@@ -41,4 +41,10 @@ class UserServiceImpl implements UserService {
             throw new BusinessRoleException("Email já existe")
         }
     }
+
+    @Override
+    User findById(Long id) {
+        userRepository.findById(id).orElseThrow({ ->
+            new BusinessRoleException("Usuário não encontrado") })
+    }
 }

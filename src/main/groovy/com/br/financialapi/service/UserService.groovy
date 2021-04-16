@@ -14,5 +14,6 @@ interface UserService {
 
     void validateEmail(String email)
 
+    User findById(Long id)
 
 }

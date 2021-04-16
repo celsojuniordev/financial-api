@@ -21,4 +21,8 @@ interface LaunchService {
 
     void validate(Launch launch)
 
+    Launch findById(Long id)
+
+    Long getBalanceByUser(Long id)
+
 }

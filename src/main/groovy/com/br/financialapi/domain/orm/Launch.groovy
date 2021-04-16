@@ -24,7 +24,7 @@ class Launch {
 
     Integer year
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     User user
 
     Long value

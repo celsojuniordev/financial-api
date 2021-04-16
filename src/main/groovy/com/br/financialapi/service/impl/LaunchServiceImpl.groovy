@@ -1,6 +1,7 @@
 package com.br.financialapi.service.impl
 
 import com.br.financialapi.domain.enums.LaunchStatus
+import com.br.financialapi.domain.enums.LaunchType
 import com.br.financialapi.domain.orm.Launch
 import com.br.financialapi.domain.repository.LaunchRepository
 import com.br.financialapi.exceptions.BusinessRoleException
@@ -82,5 +83,21 @@ class LaunchServiceImpl implements LaunchService {
         if(!launch.type) {
             throw new BusinessRoleException("Informe um tipo de lançamento")
         }
+    }
+
+    @Override
+    Launch findById(Long id) {
+        return launchRepository.findById(id).orElseThrow({ ->
+            new BusinessRoleException("Lançamento não encontrado") })
+    }
+
+    @Override
+    Long getBalanceByUser(Long id) {
+        Long receitas = launchRepository.getBalanceByUser(id, LaunchType.RECEITA)
+        Long despesas = launchRepository.getBalanceByUser(id, LaunchType.DESPESA)
+        receitas = receitas ?: 0
+        despesas = despesas ?: 0
+
+        receitas - despesas
     }
 }

@@ -98,4 +98,15 @@ class LaunchController {
             ResponseEntity.badRequest().body(e.message)
         }
     }
+
+    @GetMapping("/{id}")
+    ResponseEntity findById(@PathVariable Long id) {
+        try {
+            Launch launch = launchService.findById(id)
+
+            ResponseEntity.ok(launch)
+        } catch(BusinessRoleException e) {
+            ResponseEntity.badRequest().body(e.message)
+        }
+    }
 }
